@@ -50,12 +50,13 @@
                                 <div class="card-body">
                                     <h5 class="card-title text-center">Registro</h5>
 																				{% if submitted %}
+																					<link href= 'https://track1sprint2desarollo.allansifri.repl.co/'
 																				{% else %}
 
 																					<form class="form-signin" action="" method=POST>
 																							{% csrf_token %}
 																							{{ form.as_p }}
-																							<button class="btn btn-lg btn-primary btn-block text-uppercasee" href= "/miusuario_postulante" role= "button" type="submit">Registrarse</button>
+																							<button class="btn btn-lg btn-primary btn-block text-uppercasee" href= "https://track1sprint2desarollo.allansifri.repl.co/signin" role= "button" type="submit">Registrarse</button>
 																					</form>
 																				{% endif %}
                                 </div>
@@ -102,7 +103,7 @@
                     <div class="col-lg-4">
                         <h4 class="text-uppercase mb-4">About our project</h4>
                         <p class="lead mb-0">
-                            Aplicación para Programación Profesional que permite a empresas hacer entrevistas de trabajo modalidad online a desarrolladores y programadores.
+                          Aplicación de entrevistas para contactar empleador con programadores e informáticos.
                         </p>
                     </div>
                 </div>

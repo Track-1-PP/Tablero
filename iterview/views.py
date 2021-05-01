@@ -5,8 +5,9 @@ from django.contrib.auth.forms import UserCreationForm
 from .forms import EntrevistadorForm
 from .forms import EntrevistadoForm
 from .forms import EmpresaForm
+from .models import Agendar
 
-#Funciones que hacen el llamado al template
+#Formularios en html
 
 def signin(request):
 		submitted = False
@@ -50,11 +51,7 @@ def empresa(request):
 
 
 def agenda(request):
-    return render(request,
-     'agenda/agenda.html',
-      {
-
-      })
+	return render(request,'agenda/agenda.html',{})
 
 
 def videollamada(request):
@@ -71,7 +68,7 @@ def register_entrevistador(request):
 				form = EntrevistadorForm(request.POST)
 				if form.is_valid():
 						form.save()
-						return HttpResponseRedirect('/miusuario_entrevistador?submitted=True')
+						return HttpResponseRedirect('/signin?submitted=True')
 		else:
 				form = EntrevistadorForm
 				if 'submitted' in request.GET:
@@ -90,7 +87,7 @@ def register_postulante(request):
 				form = EntrevistadoForm(request.POST)
 				if form.is_valid():
 						form.save()
-						return HttpResponseRedirect('/miusuario?submitted=True')
+						return HttpResponseRedirect('/signin?submitted=True')
 		else:
 				form = EntrevistadoForm
 				if 'submitted' in request.GET:
@@ -107,21 +104,20 @@ def miUsuario(request):
       {
 
       })
-
-def miUsuario_entrevistador(request):
-    return render(request,
-     'miUsuario/miUsuarioEntrevistador.html',
-      {
-
-      })
   
 def ambienteProgramacion(request):
   return render (request,
   "ambienteProgramacion/ambienteProgramacion.html",
   {})
 
-
 def ambientePizarra(request):
   return render (request,
   "ambientePizarra/ambientePizarra.html",
   {})
+
+def miUsuarioEntrevistador(request):
+  return render (request,
+    'miUsuarioEntrevistador/miUsuarioEntrevistador.html',
+    {
+
+    })

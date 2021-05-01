@@ -77,11 +77,9 @@
 																				{% if submitted %}
 																				{% else %}
 																					<form class="form-signin" action="" method=POST>
-																						
 																							{% csrf_token %}
 																							{{ form.as_p }}
-																							
-																							<button class="btn btn-lg btn-primary btn-block text-uppercasee" href= "/miusuario_entrevistador" role= "button" type="submit">Registrarse</button>
+																							<button class="btn btn-lg btn-primary btn-block text-uppercasee" href= "/signin" role= "button" type="submit">Registrarse</button>
 																					</form>
 																				{% endif %}
                                 </div>
@@ -122,7 +120,7 @@
                     <div class="col-lg-4">
                         <h4 class="text-uppercase mb-4">About our project</h4>
                         <p class="lead mb-0">
-                            Aplicación para Programación Profesional que permite a empresas hacer entrevistas de trabajo modalidad online a desarrolladores y programadores.
+                          Aplicación de entrevistas para contactar empleador con programadores e informáticos.
                         </p>
                     </div>
                 </div>

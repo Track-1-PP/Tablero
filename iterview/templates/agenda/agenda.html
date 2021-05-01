@@ -51,61 +51,22 @@
 							plugins: [ 'interaction', 'dayGrid' ],
 							editable: true,
 							eventLimit: true, // allow "more" link when too many events
+							
 							events: [
 								{
-									title: 'All Day Event',
-									start: '2020-02-01'
+
+									title: 'hola',
+									start: '2021-04-31'
 								},
 								{
 									title: 'Long Event',
-									start: '2020-02-07',
-									end: '2020-02-10'
-								},
-								{
-									groupId: 999,
-									title: 'Repeating Event',
-									start: '2020-02-09T16:00:00'
-								},
-								{
-									groupId: 999,
-									title: 'Repeating Event',
-									start: '2020-02-16T16:00:00'
-								},
-								{
-									title: 'Conference',
-									start: '2020-02-11',
-									end: '2020-02-13'
+									start: "2021-04-31",
+									end: '2021-05-4'
 								},
 								{
 									title: 'Meeting',
 									start: '2020-02-12T10:30:00',
-									end: '2020-02-12T12:30:00'
 								},
-								{
-									title: 'Lunch',
-									start: '2020-02-12T12:00:00'
-								},
-								{
-									title: 'Meeting',
-									start: '2020-02-12T14:30:00'
-								},
-								{
-									title: 'Happy Hour',
-									start: '2020-02-12T17:30:00'
-								},
-								{
-									title: 'Dinner',
-									start: '2020-02-12T20:00:00'
-								},
-								{
-									title: 'Birthday Party',
-									start: '2020-02-13T07:00:00'
-								},
-								{
-									title: 'Click for Google',
-									url: 'http://google.com/',
-									start: '2020-02-28'
-								}
 							]
 						});
 
@@ -115,6 +76,60 @@
 						</script>
 
 						<script src={% static 'calendar/js/main.js' %}></script>
-				</body>
+
+              <!-- Button + modal agendar reunion  -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agendarReunion">
+      Agendar Reunión
+    </button>
+
+    <div class="modal fade" id="agendarReunion" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Agendar Reunion</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+              <!-- Button + modal agendar reunion  -->
+
+
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modificarReunion">
+			Modificar Reunión
+		</button>
+    <div class="modal fade" id="modificarReunion" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Modificar Reunion</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+			</body>
 		</html>
 {% endblock %}

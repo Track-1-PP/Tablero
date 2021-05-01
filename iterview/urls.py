@@ -11,8 +11,7 @@ urlpatterns = [
 		path('videollamada/', views.videollamada, name="videollamada"),
 		path('agenda/', views.agenda, name="agenda"),
 		path('miusuario/', views.miUsuario, name="miUsuario"),
-		path('miusuario_entrevistador/', views.miUsuario_entrevistador, name="miUsuario_entrevistador"),
+    path("miusuario_entrevistador/", views.miUsuarioEntrevistador, name="miUsuarioEntrevistador"),
     path("ambienteprogramacion/", views.ambienteProgramacion, name="ambienteProgramacion"),
     path("ambientepizarra/", views.ambientePizarra, name="ambientePizarra"),
-
     ]
