@@ -1,6 +1,3 @@
 django
-<<<<<<< HEAD
-
-=======
 dj-database-url
->>>>>>> test
+
