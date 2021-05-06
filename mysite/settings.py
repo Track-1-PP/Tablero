@@ -120,11 +120,6 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 ALLOWED_HOSTS = ['*']
-<<<<<<< HEAD
-X_FRAME_OPTIONS = '*'
-
-=======
-
 X_FRAME_OPTIONS = '*'
 
 LOGIN_REDIRECT_URL = "/"
@@ -132,4 +127,4 @@ LOGIN_REDIRECT_URL = "/"
 STATICFILES_DIRS = (
   os.path.join(BASE_DIR, 'static'),
 )
->>>>>>> test
+
