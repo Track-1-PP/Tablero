@@ -1,0 +1,135 @@
+{% extends 'agenda/base.html' %}
+{% load static %}
+{% block content %}
+		<!doctype html>
+		<html lang="en">
+				<head>
+						<!-- Required meta tags -->
+						<meta charset="utf-8">
+						<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+						<link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+
+						<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500&display=swap" rel="stylesheet">
+
+						
+						<link rel="stylesheet" href={% static "calendar/fonts/icomoon/style.css" %}>
+					
+						<link href={% static 'calendar/fullcalendar/packages/core/main.css' %} rel='stylesheet' />
+						<link href={% static 'calendar/fullcalendar/packages/daygrid/main.css' %} rel='stylesheet' />
+						
+						
+						<!-- Bootstrap CSS -->
+						<link rel="stylesheet" href={% static 'calendar/css/bootstrap.min.css'%}>
+						
+						<!-- Style -->
+						<link rel="stylesheet" href={%static 'calendar/css/style.css'%}>
+
+						<title>Calendar #9</title>
+				</head>
+				<body>
+				
+
+					<div class="content">
+							<div id='calendar'></div>
+					</div>
+						
+						
+
+						<script src={%static 'calendar/js/jquery-3.3.1.min.js' %}></script>
+						<script src={%static 'calendar/js/popper.min.js' %}></script>
+						<script src={%static 'calendar/js/bootstrap.min.js' %}></script>
+
+						<script src={%static 'calendar/fullcalendar/packages/core/main.js' %}></script>
+						<script src={%static 'calendar/fullcalendar/packages/interaction/main.js' %}></script>
+						<script src={%static 'calendar/fullcalendar/packages/daygrid/main.js' %}></script>
+
+						<script>
+							document.addEventListener('DOMContentLoaded', function() {
+						var calendarEl = document.getElementById('calendar');
+
+						var calendar = new FullCalendar.Calendar(calendarEl, {
+							plugins: [ 'interaction', 'dayGrid' ],
+							editable: true,
+							eventLimit: true, // allow "more" link when too many events
+							
+							events: [
+								{
+
+									title: 'hola',
+									start: '2021-04-31'
+								},
+								{
+									title: 'Long Event',
+									start: "2021-04-31",
+									end: '2021-05-4'
+								},
+								{
+									title: 'Meeting',
+									start: '2020-02-12T10:30:00',
+								},
+							]
+						});
+
+						calendar.render();
+					});
+
+						</script>
+
+						<script src={% static 'calendar/js/main.js' %}></script>
+
+              <!-- Button + modal agendar reunion  -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agendarReunion">
+      Agendar Reunión
+    </button>
+
+    <div class="modal fade" id="agendarReunion" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Agendar Reunion</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+              <!-- Button + modal agendar reunion  -->
+
+
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modificarReunion">
+			Modificar Reunión
+		</button>
+    <div class="modal fade" id="modificarReunion" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Modificar Reunion</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+			</body>
+		</html>
+{% endblock %}
