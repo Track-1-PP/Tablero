@@ -78,8 +78,9 @@
 						<script src={% static 'calendar/js/main.js' %}></script>
 
               <!-- Button + modal agendar reunion  -->
+
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agendarReunion">
-      Agendar Reunión
+        Agendar Reunión
     </button>
 
     <div class="modal fade" id="agendarReunion" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -92,12 +93,62 @@
             </button>
           </div>
           <div class="modal-body">
-            ...
+            <form>
+				<div class="form-group">
+					<label for="exampleFormControlTextarea1">Nombre evento</label>
+					<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Ingrese el nombre del evento"></textarea>
+				</div>
+
+				<div class="form-group">
+					<label for="exampleFormControlSelect1">Tipo de evento</label>
+					<select class="form-control" id="exampleFormControlSelect1">
+					  <option>Reunión</option>
+					  <option>Entrevista</option>
+					</select>
+				</div>
+				
+				<div class="form-group">
+					<label for="exampleFormControlTextarea1">Nombre invitado</label>
+					<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Ingrese el nombre del invitado"></textarea>
+				</div>
+				<div class="form-group">
+					<label for="exampleFormControlInput1">Email invitado</label>
+					<input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+				</div>
+				<div class="form-group" class="w-25 p-3">
+					<label for="exampleFormControlTextarea1">Día</label>
+					<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" ></textarea>
+				</div>
+				<div class="form-group">
+					<label for="exampleFormControlSelect1">Mes</label>
+					<select class="form-control" id="exampleFormControlSelect1">
+						<option>Enero</option>
+						<option>Febrero</option>
+						<option>Marzo</option>
+						<option>Abril</option>
+						<option>Mayo</option>
+						<option>Junio</option>
+						<option>Julio</option>
+						<option>Agosto</option>
+						<option>Septiembre</option>
+						<option>Octubre</option>
+						<option>Noviembre</option>
+						<option>Dicembre</option>
+					</select>
+				</div>
+				<div class="form-group" class="w-25 p-3">
+					<label for="exampleFormControlTextarea1">Horario</label>
+					<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="00:00"></textarea>
+				</div>
+					
+			  </form>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>
+		  <div class="mx-auto">
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary">Save changes</button>
+			</div>
+		  </div>
         </div>
       </div>
     </div>
@@ -127,6 +178,7 @@
         </div>
       </div>
     </div>
+
 
 
 
