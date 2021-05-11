@@ -57,16 +57,15 @@ def agenda(request):
 		form = AgendarForm(request.POST)
 		if form.is_valid():
 			form.save()
-			return HttpResponseRedirect('/miusuario_entrevistador/')
 
 	else:
 		form = AgendarForm
 		if 'submitted' in request.GET:
 			submitted = True
+	
+	eventos = Agendar.objects.all()
 
-	return render(request,'agenda/agenda.html', {
-		'form': form, 'submitted':submitted
-	})
+	return render(request,'agenda/agenda.html', {'form': form, 'submitted':submitted, 'eventos':eventos})
 
 
 
