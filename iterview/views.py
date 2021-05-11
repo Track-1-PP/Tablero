@@ -6,6 +6,7 @@ from .forms import EntrevistadorForm
 from .forms import EntrevistadoForm
 from .forms import EmpresaForm
 from .models import Agendar
+from .forms import AgendarForm
 
 #Formularios en html
 
@@ -51,7 +52,27 @@ def empresa(request):
 
 
 def agenda(request):
-	return render(request,'agenda/agenda.html',{})
+	submitted = False
+	if request.method == "POST":
+		form = AgendarForm(request.POST)
+		if form.is_valid():
+			form.save()
+			return HttpResponseRedirect('/miusuario_entrevistador/')
+
+	else:
+		form = AgendarForm
+		if 'submitted' in request.GET:
+			submitted = True
+
+	return render(request,'agenda/agenda.html', {
+		'form': form, 'submitted':submitted
+	})
+
+
+
+
+
+
 
 
 def videollamada(request):

@@ -59,11 +59,6 @@
 									start: '2021-04-31'
 								},
 								{
-									title: 'Long Event',
-									start: "2021-04-31",
-									end: '2021-05-4'
-								},
-								{
 									title: 'Meeting',
 									start: '2020-02-12T10:30:00',
 								},
@@ -87,68 +82,33 @@
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Agendar Reunion</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
-            <form>
-				<div class="form-group">
-					<label for="exampleFormControlTextarea1">Nombre evento</label>
-					<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Ingrese el nombre del evento"></textarea>
-				</div>
-				<div class="form-group">
-					<label for="exampleFormControlTextarea1">Lenguaje de programación</label>
-					<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" ></textarea>
-				</div>
-				<div class="form-group">
-					<label for="exampleFormControlSelect1">Entrevistado</label>
-					<select class="form-control" id="exampleFormControlSelect1">
-						<option>conectar bbdd</option>
-						
-					</select>
-				</div>
-				<div class="form-group">
-					<label for="exampleFormControlSelect1">Entrevistador</label>
-					<select class="form-control" id="exampleFormControlSelect1">
-						<option>conectar bbdd</option>
-						
-					</select>
-				</div>
-				
-				
-				<div class="form-group" class="w-25 p-3">
-					<label for="exampleFormControlTextarea1">Día</label>
-					<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" ></textarea>
-				</div>
-				<div class="form-group">
-					<label for="exampleFormControlSelect1">Mes</label>
-					<select class="form-control" id="exampleFormControlSelect1">
-						<option>Enero</option>
-						<option>Febrero</option>
-						<option>Marzo</option>
-						<option>Abril</option>
-						<option>Mayo</option>
-						<option>Junio</option>
-						<option>Julio</option>
-						<option>Agosto</option>
-						<option>Septiembre</option>
-						<option>Octubre</option>
-						<option>Noviembre</option>
-						<option>Dicembre</option>
-					</select>
-				</div>
-				<div class="form-group" class="w-25 p-3">
-					<label for="exampleFormControlTextarea1">Horario</label>
-					<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="00:00"></textarea>
-				</div>
-			  </form>
+
           </div>
 		  <div class="mx-auto">
 			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-				<button type="button" class="btn btn-primary">Agregar</button>
+						{% if submitted %}
+						{% else %}
+						
+							<form action="http://127.0.0.1:8000/agenda/" method=POST>
+									<h3>Agendar Reunión:</h3>
+									{% csrf_token %}
+
+									{{ form.as_p }}
+									<button class="btn btn-lg btn-primary btn-block text-uppercasee"  role= "button" type="submit">Agregar Reunión</button>
+																	
+
+								<!-- 	<input type="hidden" name="csrfmiddlewaretoken" value="pHK2CZzBB323BM2Nq7DE2sxnQoBG1jPl" disabled="">
+									<p><label for="id_nombre">Nombre:</label>
+									<input type="text" name="nombre" class="form-control" maxlength="60" required="" id="id_nombre"></p>
+									<p><label for="fecha">Fecha:</label> <input type="date" name="Fecha" required id="Fecha"></p>
+									<button class=""btn btn-lg btn-primary btn-block text-uppercasee" href="/agenda" role="button" type="submit">Agendar</button> -->
+							</form>
+						{% endif %}
 			</div>
 		  </div>
         </div>
@@ -166,7 +126,16 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLongTitle">Modificar Reunion</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							{% if submitted %}
+								<link href= '/'
+							{% else %}
+
+								<form class="form-signin" action="" method=POST>
+									{% csrf_token %}
+									{{ form.as_p }}
+									<button class="btn btn-lg btn-primary btn-block text-uppercasee" href= "https://track1sprint2desarollo.allansifri.repl.co/signin" role= "button" type="submit">Modificar Reunión</button>
+								</form>
+							{% endif %}
               <span aria-hidden="true">&times;</span>
             </button>
           </div>

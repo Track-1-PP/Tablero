@@ -65,10 +65,11 @@ class ReunionForm(ModelForm):
 class AgendarForm(ModelForm):
     class Meta:
         model = Agendar
-        fields = ('nombre_agenda', 'fecha')
+        fields = ('nombre_agenda', 'fecha', 'lenguaje_programacion')
 
         widgets = {
-            'nombre': forms.TextInput(attrs={'class': 'form-control'}),
-            'fecha': forms.TextInput(attrs={'class': 'form-control'}),
-            'link': forms.TextInput(attrs={'class': 'form-control'}),
+            'nombre_agenda': forms.TextInput(attrs={'class': 'form-control'}),
+            'lenguaje_programacion': forms.TextInput(attrs={'class': 'form-control'}),
+            'fecha': forms.DateInput(attrs={'class': 'form-control'}),
+
         }

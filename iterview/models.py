@@ -44,12 +44,10 @@ class Reunion(models.Model):
 
 #agendar
 class Agendar(models.Model):
-		nombre_agenda = models.CharField('nombre', max_length=60, default='pepo')
-		fecha = models.DateTimeField('fecha reunion')
-		entrevistado = models.ForeignKey(Entrevistado, blank=True, null=True, on_delete=models.DO_NOTHING)
-		entrevistador = models.ForeignKey(Entrevistador, blank=True, null=True, on_delete=models.DO_NOTHING)
-		reunion = models.ForeignKey(Reunion, on_delete=models.CASCADE)
-		lenguaje_programacion = models.CharField('nombre lenguaje de programacion', max_length=60)
+		
+		nombre_agenda = models.CharField('Nombre', max_length=60)
+		lenguaje_programacion = models.CharField('Lenguaje programación', max_length=60)
+		fecha = models.DateTimeField('Fecha reunión')
 
 		def __str__(self):
-			return str(self.fecha) + ',' + str(self.entrevistado)
+			return str(self.nombre_agenda) + " / " +str(self.lenguaje_programacion)
