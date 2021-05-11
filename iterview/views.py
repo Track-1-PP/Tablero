@@ -7,6 +7,7 @@ from .forms import EntrevistadoForm
 from .forms import EmpresaForm
 from .models import Agendar
 from .forms import AgendarForm
+from django.core import serializers
 
 #Formularios en html
 
@@ -62,8 +63,10 @@ def agenda(request):
 		form = AgendarForm
 		if 'submitted' in request.GET:
 			submitted = True
+
 	
 	eventos = Agendar.objects.all()
+    #eventosjs = serializers.get_serializer("json")().serialize(eventos, ensure_ascii=False, many = TRUE)
 
 	return render(request,'agenda/agenda.html', {'form': form, 'submitted':submitted, 'eventos':eventos})
 
@@ -73,10 +76,24 @@ def deleteAgenda(request, pk):
 	evento = Agendar.objects.get(id=pk)
 	if request.method == "POST":
 		evento.delete()
-		return redirect('/')
-
+		return redirect('/agenda', foo='bar')
 	context = {'item':evento}
 	return render(request, 'agenda/delete_agenda.html', context)
+
+def updateAgenda(request, pk):
+
+	evento = Agendar.objects.get(id=pk)
+	form = AgendarForm(instance=evento)
+
+	if request.method == 'POST':
+		form = AgendarForm(request.POST, instance=evento)
+		if form.is_valid():
+			form.save()
+			return redirect('/agenda', foo='bar')
+
+	context = {'form':form}
+	return render(request, 'agenda/agenda_form.html', context)
+
 
 
 

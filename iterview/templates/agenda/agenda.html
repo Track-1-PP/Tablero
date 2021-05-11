@@ -44,20 +44,20 @@
 						<script src={%static 'calendar/fullcalendar/packages/daygrid/main.js' %}></script>
 
 						<script>
+							
 							document.addEventListener('DOMContentLoaded', function() {
 						var calendarEl = document.getElementById('calendar');
-
 						var calendar = new FullCalendar.Calendar(calendarEl, {
 							plugins: [ 'interaction', 'dayGrid' ],
 							editable: true,
 							eventLimit: true, // allow "more" link when too many events
 							
 							events: [
-								{
+									{
 
-									title: 'hola',
-									start: '2021-04-31'
-								},
+										title: "Hola",
+										start: '2021-04-31'
+									},
 							]
 						});
 
@@ -142,7 +142,7 @@
 					<td>{{evento.lenguaje_programacion}}</td>
 					<td>
 						<div >
-							<button type="button" class="btn btn-primary">Modificar</button>
+							<a class="btn btn-primary" href="{% url 'update_agenda' evento.id %}">Modificar</a>
 							<a class="btn btn-sm btn-danger" href="{% url 'delete_agenda' evento.id %}">Delete</a>
 					    </div>
 					</td>
