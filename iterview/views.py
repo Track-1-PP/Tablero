@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
@@ -69,7 +69,14 @@ def agenda(request):
 
 
 
+def deleteAgenda(request, pk):
+	evento = Agendar.objects.get(id=pk)
+	if request.method == "POST":
+		evento.delete()
+		return redirect('/')
 
+	context = {'item':evento}
+	return render(request, 'agenda/delete_agenda.html', context)
 
 
 
