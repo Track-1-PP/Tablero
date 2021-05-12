@@ -31,6 +31,7 @@
                 </div>
             </div>
         </nav>
+ <body id="page-top">
         <!-- Masthead-->
         <header class="masthead bg-primary text-white text-center">
             <div class="container d-flex align-items-center flex-column">
@@ -41,6 +42,11 @@
         </header>
         <!-- Portfolio Section-->
         <section class="page-section portfolio" id="portfolio">
+            <h2 class="page-section-heading text-center text-uppercase text-primary mb-0"></h2>
+						<div class="container">
+            </div>
+        </section>
+        <!---<section class="page-section portfolio" id="portfolio">
             <h2 class="page-section-heading text-center text-uppercase text-primary mb-0">Postulante</h2>
             <div class="container d-flex flex-column">
                 <div class="container">
@@ -49,48 +55,56 @@
                             <div class="card card-signin my-5 card border-primary mb-3">
                                 <div class="card-body">
                                     <h5 class="card-title text-center">Registro</h5>
-																				{% if submitted %}
-																					<link href= 'https://track1sprint2desarollo.allansifri.repl.co/'
-																				{% else %}
-
-																					<form class="form-signin" action="" method=POST>
-																							{% csrf_token %}
-																							{{ form.as_p }}
-																							<button class="btn btn-lg btn-primary btn-block text-uppercasee" href= "https://track1sprint2desarollo.allansifri.repl.co/signin" role= "button" type="submit">Registrarse</button>
-																					</form>
-																				{% endif %}
+                                                                                {% if submitted %}
+                                                                                {% else %}
+                                                                                    <form class="form-signin" action="" method=POST>
+                                                                                            {% csrf_token %}
+                                                                                            {{ register_form.as_p }}
+                                                                                            <button class="btn btn-lg btn-primary btn-block text-uppercasee" href= "login" role= "button" type="submit">Registrarse</button>
+                                                                                    </form>
+                                                                                {% endif %}
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </section>-->
         <!-- About Section-->
-        <section class="page-section bg-primary text-white mb-0" id="about">
+        <section class="page-section bg-primary text-dark mb-0" id="about">
+            <h2 class="page-section-heading text-center text-uppercase text-light mb-0">Postulante</h2>
+           <div class="container d-flex flex-column">
+               <div class="container">
+                   <div class="row">
+                       <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                           <div class="card card-signin my-5 card border-primary mb-3">
+                               <div class="card-body">
+                                   <h5 class="card-title text-center">Registro</h5>
+                                                                               {% if submitted %}
+                                                                               {% else %}
+                                                                                   <form class="form-signin" action="" method=POST>
+                                                                                           {% csrf_token %}
+                                                                                           {{ register_form.as_p }}
+                                                                                           <button class="btn btn-lg btn-primary btn-block text-uppercasee" href= "login" role= "button" type="submit">Registrarse</button>
+                                                                                   </form>
+                                                                               {% endif %}
+                                                                               
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </section>
+        <!--<section class="page-section bg-primary text-white mb-0" id="about">
             <div class="container">
 
             </div>
-        </section>
+        </section>-->
         <!-- Footer-->
         <footer class="footer text-center">
             <div class="container">
                 <div class="row">
-                    <!-- Footer Location-->
-                    <div class="col-lg-4 mb-5 mb-lg-0">
-                        <h4 class="text-uppercase mb-4">Track 1</h4>
-                        <p class="lead mb-0">
-                            Felipe Cornejo 
-                            <br />
-                            Andres Hernandez
-                            <br />
-                            Martin Roca
-                            <br />
-                            Allan Sifri
-                            <br />
-                            Matias Vidal
-                        </p>
-                    </div>
+
                     <!-- Footer Social Icons-->
                     <div class="col-lg-4 mb-5 mb-lg-0">
                         <h4 class="text-uppercase mb-4">Around the Web</h4>

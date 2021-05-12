@@ -49,26 +49,10 @@
                             <div class="card card-signin my-5 card border-primary mb-3">
                                 <div class="card-body">
                                     <h5 class="card-title text-center">Sign In</h5>
-                                        <form action= "/miusuario" class="form-signin" >
+                                        <form method ="POST">
 																					<!--ACÁ-->
-
-                                            
-                                            <div class="form-label-group">
-                                                <br>
-                                                    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-                                                </br>
-                                            </div>
-
-                                            <div class="form-label-group">
-                                                    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-                                                <br></br>
-                                            </div>
-                                            <div class="custom-control custom-checkbox mb-3">
-                                                <br>
-                                                    <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                                    <label class="custom-control-label" for="customCheck1">Remember password</label>
-                                                </br>
-                                            </div>
+                                            {% csrf_token %}
+                                            {{login_form.as_p}}
                                             <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
                                         </form>
                                 </div>
@@ -88,26 +72,10 @@
                             <div class="card card-signin my-5 card border-primary mb-3">
                                 <div class="card-body">
                                     <h5 class="card-title text-center">Sign In</h5>
-                                        <form action= "/miusuario_entrevistador" class="form-signin">
-
-
-                                            
-                                            <div class="form-label-group">
-                                                <br>
-                                                    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-                                                </br>
-                                            </div>
-
-                                            <div class="form-label-group">
-                                                    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-                                                <br></br>
-                                            </div>
-                                            <div class="custom-control custom-checkbox mb-3">
-                                                <br>
-                                                    <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                                    <label class="custom-control-label" for="customCheck1">Remember password</label>
-                                                </br>
-                                            </div>
+                                        <form method ="POST">
+																					<!--ACÁ-->
+                                            {% csrf_token %}
+                                            {{login_form.as_p}}
                                             <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
                                         </form>
                                 </div>
@@ -121,21 +89,7 @@
         <footer class="footer text-center">
             <div class="container">
                 <div class="row">
-                    <!-- Footer Location-->
-                    <div class="col-lg-4 mb-5 mb-lg-0">
-                        <h4 class="text-uppercase mb-4">Track 1</h4>
-                        <p class="lead mb-0">
-                            Felipe Cornejo 
-                            <br />
-                            Andres Hernandez
-                            <br />
-                            Martin Roca
-                            <br />
-                            Allan Sifri
-                            <br />
-                            Matias Vidal
-                        </p>
-                    </div>
+
                     <!-- Footer Social Icons-->
                     <div class="col-lg-4 mb-5 mb-lg-0">
                         <h4 class="text-uppercase mb-4">Around the Web</h4>
