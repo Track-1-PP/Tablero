@@ -66,14 +66,16 @@ class ReunionForm(ModelForm):
 class AgendarForm(ModelForm):
     class Meta:
         model = Agendar
-        fields = ('nombre_agenda', 'fecha', 'lenguaje_programacion')
+        entrevistado : forms.ModelChoiceField(queryset=Entrevistado.objects.all())
+        entrevistador : forms.ModelChoiceField(queryset=Entrevistador.objects.all())
+        fields = ['nombre_agenda', 'fecha', 'lenguaje_programacion', 'entrevistado', 'entrevistador']
 
-        widgets = {
-            'nombre_agenda': forms.TextInput(attrs={'class': 'form-control'}),
-            'lenguaje_programacion': forms.TextInput(attrs={'class': 'form-control'}),
-            'fecha': forms.DateInput(attrs={'class': 'form-control'}),
-
-        }
+        #widgets = {
+         #   'nombre_agenda': forms.TextInput(attrs={'class': 'form-control'}),
+          #  'lenguaje_programacion': forms.TextInput(attrs={'class': 'form-control'}),
+           # 'fecha': forms.DateInput(attrs={'class': 'form-control'}),
+         #   'entrevistado' : forms.ModelChoiceField(queryset=Entrevistado.objects.all()),
+          #  'entrevistador' : forms.ModelChoiceField(queryset=Entrevistador.objects.all()),}
 
 class NewUserForm(UserCreationForm):
 	email = forms.EmailField(required=True)

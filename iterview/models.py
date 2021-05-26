@@ -47,6 +47,8 @@ class Agendar(models.Model):
 		nombre_agenda = models.CharField('Nombre', max_length=60)
 		lenguaje_programacion = models.CharField('Lenguaje programación', max_length=60)
 		fecha = models.DateTimeField('Fecha reunión')
+		entrevistado = models.ForeignKey(Entrevistado, blank=True, null=True, on_delete=models.DO_NOTHING)
+		entrevistador = models.ForeignKey(Entrevistador, blank=True, null=True, on_delete=models.DO_NOTHING)
 
 		def __str__(self):
 			return str(self.nombre_agenda) + " / " +str(self.lenguaje_programacion)

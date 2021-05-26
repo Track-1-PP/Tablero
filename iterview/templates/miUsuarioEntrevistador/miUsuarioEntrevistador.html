@@ -55,38 +55,24 @@
 																<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 																		<thead>
 																				<tr>
-																						<th>Nombre Entrevistado</th>
-																						<th>Carrera</th>
-																						<th>Cargo</th>
-																						<th>Curriculum</th>
-																						<th>Nota de entrevista</th>
-																						<th>Contacto</th>
-																						<th>Fecha y hora</th>
+																					<th>Nombre Entrevista</th>
+																					<th>Lenguaje de programacion</th>
+																					<th>Fecha y hora</th>
+																					<th>Ingreso a reunión</th>
 																				</tr>
 																		</thead>
-																		<tfoot>
-																					<tr>
-																						<th>Nombre Entrevistado</th>
-																						<th>Carrera</th>
-																						<th>Cargo</th>
-																						<th>Curriculum</th>
-																						<th>Nota de entrevista</th>
-																						<th>Contacto</th>
-																						<th>Fecha y hora</th>
-																				</tr>
-																		</tfoot>
+																		
 																		<tbody>
+																			    {% for entrevista in entrevistas%}
 																				<tr>
-																					<td>Gonzalo Perez</td>
-																					<td>Informática</td>
-																					<td>Jr Web developer</td>
-																					<td>
-																						<button type="button" href="#" class="btn btn-success">CV</button>
-																					</td>
-																					<td>5.7</td>
-																					<td>gonz.perez@gmail.com</td>
-																					<td>14-2-2021 16:00</td>
+
+																					<td>{{entrevista.nombre_agenda}}</td>
+																					<td>{{entrevista.lenguaje_programacion}}</td>
+																					<td>{{entrevista.fecha}}</td>
+																					<td><a class="btn btn-primary" href="/videollamada" >Ingresar</a></td>
+																					
 																				</tr>
+																				{% endfor %}
 																		</tbody>
 																</table>
 														</div>

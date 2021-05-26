@@ -166,8 +166,5 @@ def ambientePizarra(request):
   {})
 
 def miUsuarioEntrevistador(request):
-  return render (request,
-    'miUsuarioEntrevistador/miUsuarioEntrevistador.html',
-    {
-
-    })
+		entrevistas = Agendar.objects.all()
+		return render(request,'miUsuarioEntrevistador/miUsuarioEntrevistador.html',{ 'entrevistas': entrevistas})
