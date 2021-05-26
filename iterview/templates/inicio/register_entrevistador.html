@@ -43,9 +43,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded text-uppercase js-scroll-trigger" href="/register_postulante">postulante</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded text-uppercase js-scroll-trigger" href="#about">entrevistador</a></li>
-               												
+              												
                     </ul>
                 </div>
             </div>
@@ -58,12 +56,6 @@
                 <p class="masthead-subheading font-weight-light mb-0">Best WebMeeting</p>
             </div>
         </header>
-        <!-- Portfolio Section-->
-        <section class="page-section portfolio" id="portfolio">
-            <h2 class="page-section-heading text-center text-uppercase text-primary mb-0"></h2>
-						<div class="container">
-            </div>
-        </section>
         <!-- About Section-->
         <section class="page-section bg-primary text-dark mb-0" id="about">
              <h2 class="page-section-heading text-center text-uppercase text-light mb-0">Entrevistador</h2>
@@ -78,11 +70,11 @@
 																				{% else %}
 																					<form class="form-signin" action="" method=POST>
 																							{% csrf_token %}
-																							{{ form.as_p }}
-																							<button class="btn btn-lg btn-primary btn-block text-uppercasee" href= "/signin" role= "button" type="submit">Registrarse</button>
+																							{{ register_form.as_p }}
+																							<button class="btn btn-lg btn-primary btn-block text-uppercasee" href= "login" role= "button" type="submit">Registrarse</button>
 																					</form>
 																				{% endif %}
-                                </div>
+                                                                                
                             </div>
                         </div>
                     </div>
@@ -93,21 +85,7 @@
         <footer class="footer text-center">
             <div class="container">
                 <div class="row">
-                    <!-- Footer Location-->
-                    <div class="col-lg-4 mb-5 mb-lg-0">
-                        <h4 class="text-uppercase mb-4">Track 1</h4>
-                        <p class="lead mb-0">
-                            Felipe Cornejo 
-                            <br />
-                            Andres Hernandez
-                            <br />
-                            Martin Roca
-                            <br />
-                            Allan Sifri
-                            <br />
-                            Matias Vidal
-                        </p>
-                    </div>
+
                     <!-- Footer Social Icons-->
                     <div class="col-lg-4 mb-5 mb-lg-0">
                         <h4 class="text-uppercase mb-4">Around the Web</h4>

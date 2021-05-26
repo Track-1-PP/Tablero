@@ -1,6 +1,8 @@
 {% extends 'agenda/base.html' %}
 {% load static %}
 {% block content %}
+{% if user.is_authenticated %}
+	{% if request.user.groups.all.0.name == 'Entrevistador' %}
 		<!doctype html>
 		<html lang="en">
 				<head>
@@ -44,29 +46,20 @@
 						<script src={%static 'calendar/fullcalendar/packages/daygrid/main.js' %}></script>
 
 						<script>
+							
 							document.addEventListener('DOMContentLoaded', function() {
 						var calendarEl = document.getElementById('calendar');
-
 						var calendar = new FullCalendar.Calendar(calendarEl, {
 							plugins: [ 'interaction', 'dayGrid' ],
 							editable: true,
 							eventLimit: true, // allow "more" link when too many events
 							
 							events: [
-								{
+									{
 
-									title: 'hola',
-									start: '2021-04-31'
-								},
-								{
-									title: 'Long Event',
-									start: "2021-04-31",
-									end: '2021-05-4'
-								},
-								{
-									title: 'Meeting',
-									start: '2020-02-12T10:30:00',
-								},
+										title: "Hola",
+										start: '2021-04-31'
+									},
 							]
 						});
 
@@ -87,68 +80,27 @@
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Agendar Reunion</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
-            <form>
-				<div class="form-group">
-					<label for="exampleFormControlTextarea1">Nombre evento</label>
-					<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Ingrese el nombre del evento"></textarea>
-				</div>
-				<div class="form-group">
-					<label for="exampleFormControlTextarea1">Lenguaje de programación</label>
-					<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" ></textarea>
-				</div>
-				<div class="form-group">
-					<label for="exampleFormControlSelect1">Entrevistado</label>
-					<select class="form-control" id="exampleFormControlSelect1">
-						<option>conectar bbdd</option>
-						
-					</select>
-				</div>
-				<div class="form-group">
-					<label for="exampleFormControlSelect1">Entrevistador</label>
-					<select class="form-control" id="exampleFormControlSelect1">
-						<option>conectar bbdd</option>
-						
-					</select>
-				</div>
-				
-				
-				<div class="form-group" class="w-25 p-3">
-					<label for="exampleFormControlTextarea1">Día</label>
-					<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" ></textarea>
-				</div>
-				<div class="form-group">
-					<label for="exampleFormControlSelect1">Mes</label>
-					<select class="form-control" id="exampleFormControlSelect1">
-						<option>Enero</option>
-						<option>Febrero</option>
-						<option>Marzo</option>
-						<option>Abril</option>
-						<option>Mayo</option>
-						<option>Junio</option>
-						<option>Julio</option>
-						<option>Agosto</option>
-						<option>Septiembre</option>
-						<option>Octubre</option>
-						<option>Noviembre</option>
-						<option>Dicembre</option>
-					</select>
-				</div>
-				<div class="form-group" class="w-25 p-3">
-					<label for="exampleFormControlTextarea1">Horario</label>
-					<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="00:00"></textarea>
-				</div>
-			  </form>
+
           </div>
 		  <div class="mx-auto">
 			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-				<button type="button" class="btn btn-primary">Agregar</button>
+						{% if submitted %}
+						{% else %}
+						
+							<form action="" method=POST>
+									<h3>Agendar Reunión:</h3>
+									{% csrf_token %}
+
+									{{ form }}
+									<button class="btn btn-lg btn-primary btn-block text-uppercasee"  role= "button" type="submit">Agregar Reunión</button>
+																	
+							</form>
+						{% endif %}
 			</div>
 		  </div>
         </div>
@@ -166,39 +118,38 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLongTitle">Modificar Reunion</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
+						
           </div>
 	
 			<table class="table">
 				<thead>
 				<tr>
-					<th scope="col">Entrevistador</th>
-					<th scope="col">Entrevistado</th>
+					<th scope="col">Entrevista</th>
 					<th scope="col">Fecha</th>
+					<th scope="col">Lenguaje</th>
 					<th scope="col">Acción</th>
 				</tr>
 				</thead>
 				<tbody>
+				{% for evento in eventos %}
 				<tr>
-					<th>Raimungo Moraga</th>
-					<td>Sofía Zilleruelo</td>
-					<td>25/12/2021</td>
+					<th>{{evento.nombre_agenda}}</th>
+					<td>{{evento.fecha}}</td>
+					<td>{{evento.lenguaje_programacion}}</td>
 					<td>
 						<div >
-							<button type="button" class="btn btn-primary">Modificar</button>
-							<button type="button" class="btn btn-danger">Eliminar</button>
+							<a class="btn btn-primary" href="{% url 'update_agenda' evento.id %}">Modificar</a>
+							<a class="btn btn-sm btn-danger" href="{% url 'delete_agenda' evento.id %}">Delete</a>
 					    </div>
 					</td>
 				</tr>
+				{% endfor %}
 				
 				</tbody>
 			</table>
 		  
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
           </div>
         </div>
       </div>
@@ -206,4 +157,12 @@
 	</div>
 	</body>
 	</html>
+	{% else %}
+	<html>
+		No se puede ver esto
+	</html>
+	{% endif %}
+{% else %}
+    <meta http-equiv="refresh" content="0; URL=/signin" />
+{% endif %}
 {% endblock %}

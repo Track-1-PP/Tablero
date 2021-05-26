@@ -28,8 +28,9 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/">Página Principal</a></li>
+                        {% if request.user.groups.all.0.name == 'Entrevistador' %}
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/agenda/">Calendario</a></li>
-
+                        {% endif %}
                     </ul>
                 </div>
             </div>
@@ -44,21 +45,7 @@
 <footer class="footer text-center">
 <div class="container">
     <div class="row">
-        <!-- Footer Location-->
-        <div class="col-lg-4 mb-5 mb-lg-0">
-            <h4 class="text-uppercase mb-4">Track1</h4>
-            <p class="lead mb-0">
-                Felipe Cornejo 
-                <br />
-                Andres Hernandez
-                <br />
-                Martin Roca
-                <br />
-                Allan Sifri
-                <br />
-                Matias Vidal
-            </p>
-        </div>
+
         <!-- Footer Social Icons-->
         <div class="col-lg-4 mb-5 mb-lg-0">
             <h4 class="text-uppercase mb-4">Around the Web</h4>

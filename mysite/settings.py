@@ -99,6 +99,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+SESSION_COOKIE_SECURE = True
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+CSRF_USE_SESSIONS = False
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
@@ -120,6 +123,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 ALLOWED_HOSTS = ['*']
+
 X_FRAME_OPTIONS = '*'
 
 LOGIN_REDIRECT_URL = "/"
@@ -127,4 +131,3 @@ LOGIN_REDIRECT_URL = "/"
 STATICFILES_DIRS = (
   os.path.join(BASE_DIR, 'static'),
 )
-

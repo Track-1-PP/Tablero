@@ -1,3 +1,2 @@
 django
 dj-database-url
-
