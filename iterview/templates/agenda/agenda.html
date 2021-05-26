@@ -1,6 +1,8 @@
 {% extends 'agenda/base.html' %}
 {% load static %}
 {% block content %}
+{% if user.is_authenticated %}
+	{% if request.user.groups.all.0.name == 'Entrevistador' %}
 		<!doctype html>
 		<html lang="en">
 				<head>
@@ -155,4 +157,12 @@
 	</div>
 	</body>
 	</html>
+	{% else %}
+	<html>
+		No se puede ver esto
+	</html>
+	{% endif %}
+{% else %}
+    <meta http-equiv="refresh" content="0; URL=/signin" />
+{% endif %}
 {% endblock %}

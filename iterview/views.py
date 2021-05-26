@@ -2,13 +2,13 @@ from .models import Agendar
 from .forms import AgendarForm
 from .forms import EmpresaForm
 from .forms import NewUserForm
+from .forms import NewUserForm2
 from django.contrib import messages
 from django.core import serializers
-from .forms import EntrevistadoForm
-from .forms import EntrevistadorForm
 from django.shortcuts import render,redirect
 from django.http import HttpResponseRedirect
 from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.models import Group
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 
 
@@ -22,15 +22,37 @@ def login_request(request):
 			password = form.cleaned_data.get('password')
 			user = authenticate(username=username, password=password)
 			if user is not None:
-				login(request, user)
-				messages.info(request, f"You are now logged in as {username}.")
-				return redirect("miUsuario")
+				if(user.groups.all()[0].name =="Entrevistador"):
+					login(request, user)
+					return redirect("miUsuario")
+				else:
+					messages.error(request,"Rol equivocado")
 			else:
-				messages.error(request,"Invalid username or password.")
+				messages.error(request,"Usuario o clave incorrecta.")
 		else:
-			messages.error(request,"Invalid username or password.")
+			messages.error(request,"Usuario o clave incorrecta.")
 	form = AuthenticationForm()
-	return render(request=request, template_name="inicio/signin.html", context={"login_form":form})
+	return render(request=request, template_name="inicio/signin_entrevistador.html", context={"login_form":form})
+
+def login_request_2(request):
+	if request.method == "POST":
+		form = AuthenticationForm(request, data=request.POST)
+		if form.is_valid():
+			username = form.cleaned_data.get('username')
+			password = form.cleaned_data.get('password')
+			user = authenticate(username=username, password=password)
+			if user is not None:
+				if(user.groups.all()[0].name =="Entrevistado"):
+					login(request, user)
+					return redirect("miUsuario")
+				else:
+					messages.error(request,"Rol equivocado")
+			else:
+				messages.error(request,"Usuario o clave incorrecta.")
+		else:
+			messages.error(request,"Usuario o clave incorrecta.")
+	form = AuthenticationForm()
+	return render(request=request, template_name="inicio/signin_postulante.html", context={"login_form":form})
 
 def logout_request(request):
     	logout(request)
@@ -41,6 +63,8 @@ def register_request(request):
 		form = NewUserForm(request.POST)
 		if form.is_valid():
 			user = form.save()
+			group = Group.objects.get(name="Entrevistador")
+			user.groups.add(group)
 			login(request, user)
 			messages.success(request, "Registration successful." )
 			return redirect("login")
@@ -48,11 +72,13 @@ def register_request(request):
 	form = NewUserForm
 	return render (request=request, template_name="inicio/register_entrevistador.html", context={"register_form":form})
 
-def register_postulante(request):
+def register_request_2(request):
 	if request.method == "POST":
 		form = NewUserForm(request.POST)
 		if form.is_valid():
 			user = form.save()
+			group = Group.objects.get(name="Entrevistado")
+			user.groups.add(group)
 			login(request, user)
 			messages.success(request, "Registration successful." )
 			return redirect("login")
@@ -66,6 +92,12 @@ def inicio(request):
 
       })
 
+def signin(request):
+  return render (request,
+    'inicio/signin.html',
+    {
+
+    })
 
 def empresa(request):
 		submitted = False
@@ -131,23 +163,6 @@ def videollamada(request):
       })
 
 
-def register_postulante(request):
-		submitted = False
-		if request.method == "POST":
-				form = EntrevistadoForm(request.POST)
-				if form.is_valid():
-						form.save()
-						return HttpResponseRedirect('/signin?submitted=True')
-		else:
-				form = EntrevistadoForm
-				if 'submitted' in request.GET:
-						submitted = True
-
-		return render(request, 'inicio/register_postulante.html', {
-			'form': form, 'submitted':submitted
-		})
-
-
 def miUsuario(request):
     return render(request,
      'miUsuario/miUsuario.html',
@@ -166,8 +181,5 @@ def ambientePizarra(request):
   {})
 
 def miUsuarioEntrevistador(request):
-  return render (request,
-    'miUsuarioEntrevistador/miUsuarioEntrevistador.html',
-    {
-
-    })
+	entrevistas = Agendar.objects.all()
+	return render(request,'miUsuarioEntrevistador/miUsuarioEntrevistador.html',{ 'entrevistas': entrevistas}) 

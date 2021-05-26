@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from .models import Entrevistado, Entrevistador, Agendar, Reunion, Empresa
 
 #Ingresa los datos a la BBDD
@@ -15,44 +15,6 @@ class EmpresaForm(ModelForm):
 
         widgets = {
             'nombre_empresa': forms.TextInput(attrs={'class': 'form-control'}),
-        }
-
-
-#Entrevistado
-class EntrevistadoForm(ModelForm):
-    class Meta:
-        model = Entrevistado
-        fields = (
-            'nombre',
-            'apellido',
-            'email',
-            'contraseña',
-        )
-
-        widgets = {
-            'nombre': forms.TextInput(attrs={'class': 'form-control'}),
-            'apellido': forms.TextInput(attrs={"class": "form-control"}),
-            'email': forms.EmailInput(attrs={"class": "form-control"}),
-            'contraseña': forms.PasswordInput(attrs={"class": "form-control"}),
-        }
-
-
-#Entrevistador
-class EntrevistadorForm(ModelForm):
-    class Meta:
-        model = Entrevistador
-        fields = (
-            'nombre',
-            'apellido',
-            'email',
-            'contraseña',
-        )
-
-        widgets = {
-            'nombre': forms.TextInput(attrs={'class': 'form-control'}),
-            'apellido': forms.TextInput(attrs={"class": "form-control"}),
-            'email': forms.EmailInput(attrs={"class": "form-control"}),
-            'contraseña': forms.PasswordInput(attrs={"class": "form-control"}),
         }
 
 
@@ -74,18 +36,32 @@ class AgendarForm(ModelForm):
             'fecha': forms.DateInput(attrs={'class': 'form-control'}),
 
         }
+        entrevistado : forms.ModelChoiceField(queryset=Entrevistado.objects.all())
+        entrevistador : forms.ModelChoiceField(queryset=Entrevistador.objects.all())
+        fields = ['nombre_agenda', 'fecha', 'lenguaje_programacion', 'entrevistado', 'entrevistador']
 
 class NewUserForm(UserCreationForm):
-	email = forms.EmailField(required=True)
-    #name = forms.CharField(Required=True)
+    email = forms.EmailField(required=True)
+    class Meta:
+        model = User
+        fields = ("first_name","last_name","username", "email", "password1", "password2")    
+    def save(self, commit=True):
+        user = super(NewUserForm, self).save(commit=False)
 
-	class Meta:
-		model = User
-		fields = ("username", "email", "password1", "password2")
+        user.email = self.cleaned_data['email']
+        if commit:
+            user.save()
+            return user
 
-	def save(self, commit=True):
-		user = super(NewUserForm, self).save(commit=False)
-		user.email = self.cleaned_data['email']
-		if commit:
-			user.save()
-		return user
+class NewUserForm2(UserCreationForm):
+    email = forms.EmailField(required=True)
+    class Meta:
+        model = User
+        fields = ("first_name","last_name","username", "email", "password1", "password2")    
+    def save(self, commit=True):
+        user = super(NewUserForm, self).save(commit=False)
+
+        user.email = self.cleaned_data['email']
+        if commit:
+            user.save()
+            return user

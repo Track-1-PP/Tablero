@@ -5,9 +5,11 @@ from. import views
 
 urlpatterns = [
     path('', views.inicio, name="inicio"),
-		path('register_postulante/', views.register_postulante, name="register_postulante"),
+		path('register_postulante/', views.register_request_2, name="register_postulante"),
 		path('register_entrevistador/', views.register_request, name="register_entrevistador"),
-		path('signin/', views.login_request, name="login"),
+		path('signin/',views.signin,name="login"),
+		path('signin_postulante/',views.login_request_2,name="login_postulante"),
+		path('signin_entrevistador/', views.login_request, name="login_entrevistador"),
 		path('logout/', views.logout_request, name="logout"),
 		path('videollamada/', views.videollamada, name="videollamada"),
 		path('agenda/', views.agenda, name="agenda"),
